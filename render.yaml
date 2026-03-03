@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: hotel-recommendation-api
+    env: python
+    buildCommand: "cd server && pip install -r requirements.txt"
+    startCommand: "cd server && python -m nltk.downloader vader_lexicon && gunicorn wsgi:app --bind 0.0.0.0:$PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0
+      - key: MONGO_URI
+        sync: false # Set this in the Render dashboard
