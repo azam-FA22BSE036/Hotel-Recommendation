@@ -6,6 +6,16 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/debug-vercel', function () {
+    return [
+        'app_url' => config('app.url'),
+        'asset_url' => config('app.asset_url'),
+        'env' => app()->environment(),
+        'is_secure' => request()->secure(),
+        'header_x_forwarded_proto' => request()->header('X-Forwarded-Proto'),
+    ];
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
