@@ -34,8 +34,11 @@ except Exception as e:
 app = Flask(__name__)
 CORS(app)
 
+import os
+
 # --- CONFIGURATION ---
-MONGO_URI = 'mongodb://localhost:27017/'
+# Replace <YOUR_CLUSTER_ADDRESS> with your actual Atlas cluster address (e.g., cluster0.xxxxx.mongodb.net)
+MONGO_URI = os.getenv('MONGO_URI', 'mongodb+srv://azam2004ch_db_user:4uCLYQa9cOuz6D0E@<YOUR_CLUSTER_ADDRESS>/hotel_recommendation?retryWrites=true&w=majority')
 DB_NAME = 'hotel_recommendation'
 HOTEL_COLLECTION = 'hotels'
 RATING_COLLECTION = 'ratings'
