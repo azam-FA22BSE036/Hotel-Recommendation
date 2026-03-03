@@ -4,8 +4,7 @@ import os
 
 # Connect to MongoDB
 try:
-    # Replace <YOUR_CLUSTER_ADDRESS> with your actual Atlas cluster address (e.g., cluster0.xxxxx.mongodb.net)
-    mongo_uri = os.getenv('MONGO_URI', 'mongodb+srv://azam2004ch_db_user:4uCLYQa9cOuz6D0E@<YOUR_CLUSTER_ADDRESS>/hotel_recommendation?retryWrites=true&w=majority')
+    mongo_uri = os.getenv('MONGO_URI', 'mongodb+srv://azam2004ch_db_user:4uCLYQa9cOuz6D0E@fyp.thvd8ca.mongodb.net/hotel_recommendation?retryWrites=true&w=majority')
     client = MongoClient(mongo_uri)
     db = client['hotel_recommendation']
     collection = db['hotels']
