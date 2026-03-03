@@ -9,13 +9,20 @@
     },
     "routes": [
         {
+            "src": "/(css|js|img|lib|scss|build|favicon.ico|robots.txt)(.*)",
+            "dest": "/$1$2"
+        },
+        {
             "src": "/(.*)",
             "dest": "/api/index.php"
         }
     ],
     "env": {
+        "APP_NAME": "Hotel Recommendation",
         "APP_ENV": "production",
         "APP_DEBUG": "false",
+        "APP_URL": "https://hotel-recommendation-31z5b47zu-abdullahs-projects-55eaee7f.vercel.app",
+        "ASSET_URL": "https://hotel-recommendation-31z5b47zu-abdullahs-projects-55eaee7f.vercel.app",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
         "APP_PACKAGES_CACHE": "/tmp/packages.php",
