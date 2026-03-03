@@ -110,6 +110,41 @@ input,label {
     }
 }
 
+@media (max-width: 768px) {
+    .display-3 {
+        font-size: 2rem; /* Smaller font for mobile */
+    }
+    
+    .testimonial-carousel {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .testimonial-carousel .owl-nav {
+        width: 100%;
+        justify-content: center;
+        margin-top: 20px;
+        position: relative;
+        top: auto;
+        left: auto;
+    }
+
+    .testimonial-carousel .owl-nav .owl-prev,
+    .testimonial-carousel .owl-nav .owl-next {
+        margin: 0 10px;
+    }
+
+    .service-item {
+        height: auto;
+        min-height: 320px;
+    }
+    
+    .section-title::before,
+    .section-title::after {
+        width: 30px; /* Smaller lines on mobile */
+    }
+}
+
 
 /*** Header ***/
 .carousel-caption {
@@ -434,8 +469,22 @@ input,label {
 
 .footer {
     position: relative;
-    margin-top: -110px;
-    padding-top: 180px;
+    margin-top: 0;
+    padding-top: 60px;
+}
+
+/* Ensure pagination stays visible above adjacent sections */
+.pagination {
+    position: relative;
+    z-index: 10;
+}
+.page-item.active .page-link {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+}
+.page-link {
+    color: #333;
 }
 
 .footer .btn.btn-social {

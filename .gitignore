@@ -18,3 +18,15 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+# Local development files (not needed for deployment)
+/python-bin
+/php-bin
+/drivers
+/.venv
+/.tools
+*.zip
+composer.phar
+release.html
+release.txt
+__pycache__

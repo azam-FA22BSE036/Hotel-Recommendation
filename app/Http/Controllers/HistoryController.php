@@ -34,9 +34,7 @@ class HistoryController extends Controller
      */
     public function index()
     {
-        $histories = History::where('user_id',Auth::user()->id)->get();
-        return response()->json([
-            'histories' => $histories,
-        ]);
+        $histories = History::where('user_id',Auth::user()->id)->orderBy('created_at', 'desc')->get();
+        return view('history', compact('histories'));
     }
 }

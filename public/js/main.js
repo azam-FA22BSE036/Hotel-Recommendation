@@ -104,6 +104,11 @@
             }
         }
     });
+
+    // Date Picker Initialization
+    $('#date1, #date2').datetimepicker({
+        format: 'L'
+    });
     
 })(jQuery);
 

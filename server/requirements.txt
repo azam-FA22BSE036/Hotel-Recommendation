@@ -1,0 +1,12 @@
+flask
+flask_cors
+pandas
+scikit-learn
+nltk
+sentence_transformers
+numpy
+pymongo
+requests
+tensorflow
+spacy
+keras

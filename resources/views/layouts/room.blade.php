@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Hotelier - Hotel HTML Template</title>
+    <title>Hotel Recommendation System</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="" name="keywords" />
     <meta content="" name="description" />
@@ -76,53 +76,77 @@
         <div class="row gx-0">
           <div class="col-lg-3 bg-dark d-none d-lg-block">
             <a
-              href="index.php"
+              href="{{ url('/') }}"
               class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center"
             >
-              <h1 class="m-0 text-primary text-uppercase">Hotelier</h1>
+              <h1 class="m-0 text-primary text-uppercase" style="font-size: 15px;">Hotel Recommendation System</h1>
             </a>
           </div>
-          <div class="row gx-0 bg-white d-none d-lg-flex">
-          <div class="col-lg-7 px-5 text-start">
-    <?php
-    if (isset($_COOKIE['user_id'])) {
-        // User is logged in, show logout button
-        echo '
-        <div class="h-100 d-inline-flex align-items-center py-2 me-4">
-            <i class="fa fa-sign-out text-primary me-2"></i>
-            <a href="logout.php">
-                <p class="mb-0">Logout</p>
-            </a>
-        </div>';
-    } else {
-        // User is not logged in, show login and register buttons
-        echo '
-        <div class="h-100 d-inline-flex align-items-center py-2 me-4">
-            <i class="fa fa-lock text-primary me-2"></i>
-            <a href="login.php">
-                <p class="mb-0">Login</p>
-            </a>
-        </div>
-        <div class="h-100 d-inline-flex align-items-center py-2">
-            <i class="fa fa-user text-primary me-2"></i>
-            <a href="signup.php">
-                <p class="mb-0">Register</p>
-            </a>
-        </div>';
-    }
-    ?>
-</div>
-
-            <div class="col-lg-5 px-5 text-end">
-                <div class="d-inline-flex align-items-center py-2">
-                    <a class="me-3" href=""><i class="fab fa-facebook-f"></i></a>
-                    <a class="me-3" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="me-3" href=""><i class="fab fa-linkedin-in"></i></a>
-                    <a class="me-3" href=""><i class="fab fa-instagram"></i></a>
-                    <a class="" href=""><i class="fab fa-youtube"></i></a>
+          <div class="col-lg-9">
+            <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0">
+              <a href="{{ url('/') }}" class="navbar-brand d-block d-lg-none">
+                <h1 class="m-0 text-primary text-uppercase" style="font-size: 15px;">Hotel Recommendation System</h1>
+              </a>
+              <button
+                type="button"
+                class="navbar-toggler"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse"
+              >
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div
+                class="collapse navbar-collapse justify-content-between"
+                id="navbarCollapse"
+              >
+                <div class="navbar-nav mr-auto py-0">
+                  <a href="{{ url('/') }}" class="nav-item nav-link">Home</a>
+                  <a href="{{ route('rooms') }}" class="nav-item nav-link">Rooms</a>
+                  <div class="d-lg-none">
+                      @auth
+                          <a href="{{ url('/dashboard') }}" class="nav-item nav-link">Dashboard</a>
+                           <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                              @csrf
+                              <a href="{{ route('logout') }}" class="nav-item nav-link" onclick="event.preventDefault(); this.closest('form').submit();">Log Out</a>
+                          </form>
+                      @else
+                          <a href="{{ route('login') }}" class="nav-item nav-link">Login</a>
+                          <a href="{{ route('register') }}" class="nav-item nav-link">Register</a>
+                      @endauth
+                  </div>
                 </div>
-            </div>
-        </div>
+                
+                <div class="row gx-0 bg-white d-none d-lg-flex">
+                    <div class="col-lg-7 px-5 text-start">
+                        @auth
+                        <div class="h-100 d-inline-flex align-items-center py-2 me-4">
+                            <i class="fa fa-sign-out text-primary me-2"></i>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
+                                    <p class="mb-0">Logout</p>
+                                </a>
+                            </form>
+                        </div>
+                        @else
+                        <div class="h-100 d-inline-flex align-items-center py-2 me-4">
+                            <i class="fa fa-lock text-primary me-2"></i>
+                            <a href="{{ route('login') }}">
+                                <p class="mb-0">Login</p>
+                            </a>
+                        </div>
+                        <div class="h-100 d-inline-flex align-items-center py-2">
+                            <i class="fa fa-user text-primary me-2"></i>
+                            <a href="{{ route('register') }}">
+                                <p class="mb-0">Register</p>
+                            </a>
+                        </div>
+                        @endauth
+                    </div>
+                </div>
+              </div>
+            </nav>
+          </div>
         </div>
       </div>
       <!-- Header End -->
@@ -130,7 +154,7 @@
       <!-- Page Header Start -->
       <div
         class="container-fluid page-header mb-5 p-0"
-        style="background-image: url(img/carousel-1.jpg)"
+        style="background-image: url({{ asset('img/carousel-1.jpg') }})"
       >
         <div class="container-fluid page-header-inner py-5">
           <div class="container text-center pb-5">
@@ -139,7 +163,7 @@
             </h1>
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb justify-content-center text-uppercase">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
                 <li class="breadcrumb-item"><a href="#">Recommendation</a></li>
               </ol>
             </nav>
@@ -158,9 +182,11 @@
             <div class="row g-2">
               <div class="col-md-10">
                 <div class="row g-2">
-                    <h3>Describe your requirements</h3>
-                    <small>Example, I'm looking for a hotel on beach side</small>
-                  <div class="lg-3">
+                    <div class="col-12">
+                        <h3>Describe your requirements</h3>
+                        <small>Example, I'm looking for a hotel on beach side</small>
+                    </div>
+                  <div class="col-12">
                     <input
                     style="width: 100%; padding: 30px; margin: 30px 0px;"
                     
@@ -207,17 +233,11 @@
           </div>
           <div id="hotel-container" class="row g-4">
             <center>
-              <?php
-              
-            if (isset($_COOKIE['user_id'])) {
-                  $userId = $_COOKIE['user_id'];
-                echo "Seach you requirements to get recommended hotels here";
-                } 
-                else {
-                  echo "<a href='login.php' class='btn btn-primary py-md-3 px-md-5 me-3 animated'> Login </a>";
-                }
-
-              ?>
+              @auth
+                  Search your requirements to get recommended hotels here
+              @else
+                  <a href="{{ route('login') }}" class="btn btn-primary py-md-3 px-md-5 me-3 animated"> Login </a>
+              @endauth
             </center>
           </div>
         </div>
@@ -241,7 +261,7 @@
               <div class="d-flex align-items-center">
                 <img
                   class="img-fluid flex-shrink-0 rounded"
-                  src="img/testimonial-1.jpg"
+                  src="{{ asset('img/testimonial-1.jpg') }}"
                   style="width: 45px; height: 45px"
                 />
                 <div class="ps-3">
@@ -260,9 +280,9 @@
               Our stay at Seaside Serenity Resort was nothing short of magical. Nestled along the coastline, the views were absolutely stunning. The room was cozy and beautifully decorated, and the sound of the waves lulled us to sleep every night. The staff were incredibly friendly and helpful, always ready with recommendations for local attractions and dining options. We can't wait to return
               </p>
               <div class="d-flex align-items-center">
-                <img
+                  <img
                   class="img-fluid flex-shrink-0 rounded"
-                  src="img/testimonial-2.jpg"
+                  src="{{ asset('img/testimonial-2.jpg') }}"
                   style="width: 45px; height: 45px"
                 />
                 <div class="ps-3">
@@ -283,7 +303,7 @@
               <div class="d-flex align-items-center">
                 <img
                   class="img-fluid flex-shrink-0 rounded"
-                  src="img/testimonial-3.jpg"
+                  src="{{ asset('img/testimonial-3.jpg') }}"
                   style="width: 45px; height: 45px"
                 />
                 <div class="ps-3">
@@ -339,11 +359,11 @@
           <div class="row g-5">
             <div class="col-md-6 col-lg-4">
               <div class="bg-primary rounded p-4">
-                <a href="index.php"
-                  ><h1 class="text-white text-uppercase mb-3">Hotelier</h1></a
+                <a href="{{ url('/') }}"
+                  ><h1 class="text-white text-uppercase mb-3" style="font-size: 20px;">Hotel Recommendation System</h1></a
                 >
                 <p class="text-white mb-0">
-                We provide services to our loyal customer, they could now get hotel recommendations through their requirements
+                  Experience the best hospitality with our curated selection of top-rated hotels. We provide personalized recommendations to ensure your stay is comfortable and memorable.
                 </p>
               </div>
             </div>
@@ -361,7 +381,7 @@
                 <i class="fa fa-phone-alt me-3"></i>+012 345 67890
               </p>
               <p class="mb-2">
-                <i class="fa fa-envelope me-3"></i>info@example.com
+                <i class="fa fa-envelope me-3"></i>shahzaib@gmail.com
               </p>
               <div class="d-flex pt-2">
                 <a class="btn btn-outline-light btn-social" href=""
@@ -379,54 +399,30 @@
               </div>
             </div>
             <div class="col-lg-5 col-md-12">
-              <div class="row gy-5 g-4">
-                <div class="col-md-6">
-                  <h6
-                    class="section-title text-start text-primary text-uppercase mb-4"
-                  >
-                    Company
-                  </h6>
-                  <a class="btn btn-link" href="">About Us</a>
-                  <a class="btn btn-link" href="">Contact Us</a>
-                  <a class="btn btn-link" href="">Privacy Policy</a>
-                  <a class="btn btn-link" href="">Terms & Condition</a>
-                  <a class="btn btn-link" href="">Support</a>
+                <div class="row gy-5 g-4">
+                    <div class="col-md-6">
+                    <h6
+                        class="section-title text-start text-primary text-uppercase mb-4"
+                    >
+                        Services
+                    </h6>
+                    <a class="btn btn-link" href="{{ route('rooms') }}">Rooms & Apartment</a>
+                    <a class="btn btn-link" href="{{ route('dashboard') }}">Food & Restaurant</a>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                  <h6
-                    class="section-title text-start text-primary text-uppercase mb-4"
-                  >
-                    Services
-                  </h6>
-                  <a class="btn btn-link" href="">Food & Restaurant</a>
-                  <a class="btn btn-link" href="">Spa & Fitness</a>
-                  <a class="btn btn-link" href="">Sports & Gaming</a>
-                  <a class="btn btn-link" href="">Event & Party</a>
-                  <a class="btn btn-link" href="">GYM & Yoga</a>
                 </div>
-              </div>
-            </div>
           </div>
         </div>
         <div class="container">
           <div class="copyright">
             <div class="row">
               <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                &copy; <a class="border-bottom" href="#">Your Site Name</a>, All
+                &copy; <a class="border-bottom" href="#">Hotel Recommendation System</a>, All
                 Right Reserved.
-
-                <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                Designed By
-                <a class="border-bottom" href="https://htmlcodex.com"
-                  >HTML Codex</a
-                >
               </div>
               <div class="col-md-6 text-center text-md-end">
                 <div class="footer-menu">
-                  <a href="">Home</a>
-                  <a href="">Cookies</a>
-                  <a href="">Help</a>
-                  <a href="">FQAs</a>
+                  <a href="{{ url('/') }}">Home</a>
                 </div>
               </div>
             </div>
@@ -456,8 +452,9 @@
           fetchRecommendations(data);
         });
 
-        // Function to make API call and fetch recommendations
+        // Function to make API call and fetch recommendations (robust parsing)
         const fetchRecommendations = (data) => {
+          const fallbackImage = '{{ asset('img/room-1.jpg') }}';
           fetch("http://localhost:5000/recommendations", {
             method: "POST",
             headers: {
@@ -465,15 +462,16 @@
             },
             body: JSON.stringify(data),
           })
-            .then((response) => response.json())
-            .then((data) => {
-              const hotels = JSON.parse(data);
+            .then((response) => response.text())
+            .then((text) => {
+              let hotels = [];
+              try { hotels = JSON.parse(text); } catch (e) { hotels = []; }
               const mapHotelDetails = (hotel) => {
                 return `
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
               <div class="room-item shadow rounded overflow-hidden">
                 <div class="position-relative">
-                  <img class="img-fluid" src="${hotel.images??'img/room-1.jpg'}" alt="" />
+                  <img class="img-fluid" src="${hotel.images || fallbackImage}" alt="" />
                   <small
                     class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4"
                     >${hotel.nationality}</small
@@ -505,7 +503,7 @@
                   `;
               };
 
-              const sortedHotels = hotels.sort((a, b) => Number(b.rating) - Number(a.rating));
+              const sortedHotels = (hotels || []).sort((a, b) => Number(b.rating) - Number(a.rating));
               
               console.log('sortedHotels',sortedHotels);
 
@@ -518,6 +516,8 @@
             })
             .catch((error) => {
               console.error("Error:", error);
+              const hotelContainer = document.getElementById("hotel-container");
+              hotelContainer.innerHTML = "<p>Recommendation service is currently unavailable. Please try again later.</p>";
             });
         };
       });

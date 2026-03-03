@@ -1,0 +1,93 @@
+
+/* Mobile Responsiveness Improvements */
+@media (max-width: 991.98px) {
+    .container-xxl {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    .navbar-collapse {
+        background: #0F172B;
+        padding: 15px;
+        z-index: 1000;
+    }
+
+    .navbar-nav .nav-link {
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .navbar-nav .nav-link:last-child {
+        border-bottom: none;
+    }
+
+    .carousel-caption {
+        padding-bottom: 30px;
+    }
+    
+    .carousel-caption h1 {
+        font-size: 2.5rem !important;
+    }
+    
+    .carousel-caption h6 {
+        font-size: 1rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .col-lg-3, .col-lg-9 {
+        width: 100%;
+    }
+    
+    .header-carousel .carousel-item {
+        min-height: 400px;
+    }
+    
+    .page-header {
+        height: 300px;
+        background-size: cover;
+    }
+    
+    .booking {
+        margin-top: -50px !important;
+        padding: 20px;
+    }
+    
+    .booking form .row > div {
+        margin-bottom: 15px;
+    }
+    
+    .booking button {
+        margin-top: 10px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.75rem;
+    }
+    
+    .display-3 {
+        font-size: 2rem !important;
+    }
+    
+    /* Ensure forms are full width and readable */
+    .form-control, .form-select {
+        height: 50px;
+        font-size: 16px; /* Prevent zoom on iOS */
+    }
+    
+    .service-item {
+        margin-bottom: 20px;
+    }
+    
+    .room-item {
+        margin-bottom: 30px;
+    }
+
+    .footer .row > div {
+        margin-bottom: 30px;
+    }
+}

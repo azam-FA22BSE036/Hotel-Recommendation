@@ -25,6 +25,18 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
+                        <x-dropdown-link :href="route('history.view')">
+                            {{ __('History') }}
+                        </x-dropdown-link>
+
+                        <x-dropdown-link :href="route('wishlist.view')">
+                            {{ __('Wishlist') }}
+                        </x-dropdown-link>
+
+                        <x-dropdown-link :href="route('bookings.index')">
+                            {{ __('My Bookings') }}
+                        </x-dropdown-link>
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
