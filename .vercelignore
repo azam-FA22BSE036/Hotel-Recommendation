@@ -1,0 +1,10 @@
+/vendor
+/node_modules
+/python-bin
+/php-bin
+/drivers
+/.venv
+/.tools
+*.zip
+/.git
+/storage
